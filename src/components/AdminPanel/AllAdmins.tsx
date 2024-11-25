@@ -4,6 +4,7 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { Metadata } from "next";
 import TableFive from "../Tables/TableFive";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export const metadata: Metadata = {
   title: "Next.js Settings | TailAdmin - Next.js Dashboard Template",
@@ -12,11 +13,16 @@ export const metadata: Metadata = {
 };
 
 const AllExhibit = () => {
-  const role = localStorage.getItem("user_type")
   const router = useRouter();
-  if(role !== "0" && role !== "1" ){
-    router.push("/auth/admin/signin")
-  }
+
+  useEffect(() => {
+    const userType = localStorage.getItem("userType");
+    console.log(userType)
+    console.log("User Type:", userType);
+    if (userType !== "0" && userType !== "1") {
+      router.push("/auth/admin/signin");
+    }
+  }, [router]);
   return (
     <div className="mx-auto max-w-270">
       <Breadcrumb pageName="All Admins" />
