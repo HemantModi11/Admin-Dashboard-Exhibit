@@ -16,10 +16,9 @@ const AllExhibit = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const userType = localStorage.getItem("userType");
-    console.log(userType)
-    console.log("User Type:", userType);
-    if (userType !== "0" && userType !== "1") {
+    const authToken = localStorage.getItem("authToken");
+    console.log(authToken)
+    if (!authToken) {
       router.push("/auth/admin/signin");
     }
   }, [router]);
