@@ -22,9 +22,9 @@ const AddAdmin = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const currentUserType = localStorage.getItem("userType");
-    if (currentUserType !== "0") {
-      router.push("/auth/signin");
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      router.push("/auth/admin/signin");
     }
   }, [router]);
 
