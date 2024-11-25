@@ -32,13 +32,19 @@ const AddClient = () => {
     languages: ["english"],
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value, type, checked } = e.target;
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value, type } = e.target;
+  
     setClientData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === "checkbox" 
+        ? (e.target as HTMLInputElement).checked 
+        : value,
     }));
   };
+  
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
