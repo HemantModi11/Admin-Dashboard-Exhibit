@@ -16,7 +16,7 @@ const SetupPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/api/admin/setup-password", {
+      const response = await axios.post("https://ai-exhibit-display.onrender.com/api/admin/setup-password", {
         email,
         randomPassword,
         newPassword,

@@ -4,7 +4,7 @@ const ShortUrlPage = ({ shortUrl }) => {
     useEffect(() => {
         const fetchRedirectUrl = async () => {
             try {               
-                const response = await fetch(`http://localhost:8000/api/redirect/${shortUrl}`);
+                const response = await fetch(`https://ai-exhibit-display.onrender.com/api/redirect/${shortUrl}`);
                 const data = await response.json();
                 alert(data.redirectUrl)
 

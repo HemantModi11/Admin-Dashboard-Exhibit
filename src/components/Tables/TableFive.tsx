@@ -27,7 +27,7 @@ const AdminTable = () => {
   useEffect(() => {
     const fetchAdmins = async () => {
       try {
-        const response = await api.get("http://localhost:8000/api/admin/", {
+        const response = await api.get("https://ai-exhibit-display.onrender.com/api/admin/", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
@@ -66,7 +66,7 @@ const AdminTable = () => {
     if (currentUserType === 0) {
       try {
         const response = await api.put(
-          `http://localhost:8000/api/admin/${id}`,
+          `https://ai-exhibit-display.onrender.com/api/admin/${id}`,
           { status: newStatus }, // Sending status data
           {
             headers: {
