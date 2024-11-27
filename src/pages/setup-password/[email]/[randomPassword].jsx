@@ -1,34 +1,48 @@
-"use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import axios from "axios";
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const SetupPassword = () => {
   const router = useRouter();
   const { email, randomPassword } = router.query;
 
-  const [newPassword, setNewPassword] = useState("");
-  const [error, setError] = useState("");
+  const [newPassword, setNewPassword] = useState('');
+  const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+
+  // Ensure both email and randomPassword are available
+  if (!email || !randomPassword) {
+    return <div>Loading...</div>;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Ensure that none of these are undefined before sending the request
+    if (!email || !randomPassword || !newPassword) {
+      setError("All fields must be filled out.");
+      return;
+    }
+  
     try {
-      const response = await axios.post("https://ai-exhibit-display.onrender.com/api/admin/setup-password", {
+      const response = await axios.post("http://localhost:8000/api/client/setup-password", {
         email,
-        randomPassword,
+        tempPassword: randomPassword,
         newPassword,
       });
+  
       if (response.status === 200) {
         setSuccess(true);
         setError("");
       }
     } catch (err) {
+      console.error(err);
       setError("Failed to set up password. Please check your details.");
     }
   };
+  
 
   return (
     <div className="h-screen flex justify-center items-center bg-gray-100">
