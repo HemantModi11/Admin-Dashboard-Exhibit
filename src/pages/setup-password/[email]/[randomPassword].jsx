@@ -27,7 +27,7 @@ const SetupPassword = () => {
     }
   
     try {
-      const response = await axios.post("http://localhost:8000/api/client/setup-password", {
+      const response = await axios.post("https://ai-exhibit-display.onrender.com/api/client/setup-password", {
         email,
         tempPassword: randomPassword,
         newPassword,
